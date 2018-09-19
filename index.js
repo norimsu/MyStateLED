@@ -1,9 +1,9 @@
 var Gpio = require('onoff').Gpio;
 var firebase = require('firebase');
 
-var led_working = new Gpio(16, 'out');
+var led_working = new Gpio(20, 'out');
 var led_inMind = new Gpio(21, 'out');
-var led_absent = new Gpio(20, 'out');
+var led_absent = new Gpio(16, 'out');
 
 var INSIGHT = {};
 
