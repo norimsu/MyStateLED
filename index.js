@@ -94,8 +94,6 @@ var iv = setInterval(function() {
 //     led_metting.unexport();
 // });
 
-setInterval(iv);
-
 process.stdin.setRawMode(true);
 process.stdin.on("keypress", function(chunk, key) {
     if (key && key.name === "c" && key.ctrl) {
