@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^5.5.0",
     "onoff": "^3.2.1"
   }
 }
