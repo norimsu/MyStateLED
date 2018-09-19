@@ -74,7 +74,7 @@ var iv = setInterval(function() {
                 case "focus":
                     led_inMind.writeSync(1);
                     break;
-                case "meeting":
+                case "onMeeting":
                     led_meeting.writeSync(1);
                     break;
                 default:
