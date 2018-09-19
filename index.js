@@ -54,12 +54,22 @@ var iv = setInterval(function() {
             user_state = snapshot.val().state;
             console.log(user_state);
             console.log(snapshot.val().team);
-
+            console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
             switch (user_state) {
                 case "absence":
                     led_absent.writeSync(1);
                     led_working.writeSync(0);
                     led_inMind.writeSync(0);
+                    break;
+                case "normal":
+                    led_absent.writeSync(0);
+                    led_working.writeSync(1);
+                    led_inMind.writeSync(0);
+                    break;
+                case "focus":
+                    led_absent.writeSync(0);
+                    led_working.writeSync(0);
+                    led_inMind.writeSync(1);
                     break;
                 default:
                     led_absent.writeSync(0);
