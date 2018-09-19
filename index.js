@@ -1,5 +1,6 @@
 var Gpio = require('onoff').Gpio;
 var firebase = require('firebase');
+require("console-stamp")(console, 'yyyy/mm/dd HH:MM:ss.l');
 
 var led_working = new Gpio(20, 'out');
 var led_inMind = new Gpio(21, 'out');
@@ -106,7 +107,7 @@ process.stdin.on("keypress", function(chunk, key) {
         led_inMind.writeSync(0);
         led_inMind.unexport();
         led_meeting.writeSync(0);
-        led_metting.unexport();
+        led_meeting.unexport();
         console.log("bye bye");
         process.exit();
     }
