@@ -38,6 +38,10 @@ var led_inMind_state = 0;
 
 var user_state = "";
 
+var time = Date.now || function() {
+    return +new Date;
+};
+
 var iv = setInterval(function() {
     // led 상태 동기화
     led_absent_state = led_absent.readSync();
@@ -48,6 +52,7 @@ var iv = setInterval(function() {
 
     userInfo.once("value")
         .then(function(snapshot) {
+            console.log(time());
             console.log("개인 데이터");
             console.log(snapshot.val().name);
             console.log(snapshot.val().phone);
