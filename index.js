@@ -35,7 +35,7 @@ INSIGHT.controller = {
 var led_state = 0;
 
 var iv = setInterval(function() {
-    led_state = led.readSync();
+    led_state = led_absent.readSync();
     if (led_state == 0) led_state = 1;
     else led_state = 0;
     var userInfo = INSIGHT.controller.getUserInfo(1);
