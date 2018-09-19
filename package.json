@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "console-stamp": "^0.2.6",
     "firebase": "^5.5.0",
     "onoff": "^3.2.1"
   }
