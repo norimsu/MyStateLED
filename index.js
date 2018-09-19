@@ -5,7 +5,7 @@ var led_working = new Gpio(16, 'out');
 var led_inMind = new Gpio(21, 'out');
 var led_absent = new Gpio(20, 'out');
 
-var INSIGHT = new Object();
+var INSIGHT = {};
 
 INSIGHT.config = {
     apiKey: "AIzaSyCau_rQmmK0Z3jQc-BxvcaIQJMbxvHm8mA",
@@ -18,7 +18,7 @@ INSIGHT.config = {
 
 INSIGHT.firebase = firebase;
 INSIGHT.firebase.initializeApp(INSIGHT.config);
-INSIGHT.controller = new Object();
+INSIGHT.controller = {};
 
 INSIGHT.controller = {
     getAllInfo: function() {
@@ -30,7 +30,7 @@ INSIGHT.controller = {
         userInfo = INSIGHT.firebase.database().ref('/' + id);
         return userInfo;
     }
-}
+};
 
 var led_state = 0;
 
