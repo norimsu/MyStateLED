@@ -52,7 +52,6 @@ var iv = setInterval(function() {
 
     userInfo.once("value")
         .then(function(snapshot) {
-            console.log(time());
             console.log("개인 데이터");
             console.log(snapshot.val().name);
             console.log(snapshot.val().phone);
