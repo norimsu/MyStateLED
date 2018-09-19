@@ -81,14 +81,33 @@ var iv = setInterval(function() {
         });
 }, 1000);
 
-setTimeout(function() {
-    clearInterval(iv);
-    led_absent.writeSync(0);
-    led_absent.unexport();
-    led_working.writeSync(0);
-    led_working.unexport();
-    led_inMind.writeSync(0);
-    led_inMind.unexport();
-    led_meeting.writeSync(0);
-    led_metting.unexport();
-}, 20000);
+// setTimeout(function() {
+//     clearInterval(iv);
+//     led_absent.writeSync(0);
+//     led_absent.unexport();
+//     led_working.writeSync(0);
+//     led_working.unexport();
+//     led_inMind.writeSync(0);
+//     led_inMind.unexport();
+//     led_meeting.writeSync(0);
+//     led_metting.unexport();
+// });
+
+iv();
+
+process.stdin.setRawMode(true);
+process.stdin.on("keypress", function(chunk, key) {
+    if (key && key.name === "c" && key.ctrl) {
+        clearInterval(iv);
+        led_absent.writeSync(0);
+        led_absent.unexport();
+        led_working.writeSync(0);
+        led_working.unexport();
+        led_inMind.writeSync(0);
+        led_inMind.unexport();
+        led_meeting.writeSync(0);
+        led_metting.unexport();
+        console.log("bye bye");
+        process.exit();
+    }
+});
