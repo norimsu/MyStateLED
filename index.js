@@ -94,19 +94,17 @@ var iv = setInterval(function() {
 //     led_metting.unexport();
 // });
 
-process.stdin.setRawMode(true);
-process.stdin.on("keypress", function(chunk, key) {
-    if (key && key.name === "c" && key.ctrl) {
-        clearInterval(iv);
-        led_absent.writeSync(0);
-        led_absent.unexport();
-        led_working.writeSync(0);
-        led_working.unexport();
-        led_inMind.writeSync(0);
-        led_inMind.unexport();
-        led_meeting.writeSync(0);
-        led_meeting.unexport();
-        console.log("bye bye");
-        process.exit();
-    }
+process.on('SIGINT', function() {
+    console.log("Caught interrupt signal");
+    clearInterval(iv);
+    led_absent.writeSync(0);
+    led_absent.unexport();
+    led_working.writeSync(0);
+    led_working.unexport();
+    led_inMind.writeSync(0);
+    led_inMind.unexport();
+    led_meeting.writeSync(0);
+    led_meeting.unexport();
+    console.log("bye bye");
+    process.exit();
 });
