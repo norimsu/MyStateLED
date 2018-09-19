@@ -51,7 +51,7 @@ var iv = setInterval(function() {
             console.log("개인 데이터");
             console.log(snapshot.val().name);
             console.log(snapshot.val().phone);
-            user_state = snapshot.val.state;
+            user_state = snapshot.val().state;
             console.log(user_state);
             console.log(snapshot.val().team);
 
