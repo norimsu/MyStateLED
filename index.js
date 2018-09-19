@@ -4,8 +4,10 @@ var firebase = require('firebase');
 var led_working = new Gpio(20, 'out');
 var led_inMind = new Gpio(21, 'out');
 var led_absent = new Gpio(16, 'out');
+var led_meeting = new Gpio(19, 'out');
 
 var INSIGHT = {};
+var allInfo;
 
 INSIGHT.config = {
     apiKey: "AIzaSyCau_rQmmK0Z3jQc-BxvcaIQJMbxvHm8mA",
@@ -35,18 +37,16 @@ INSIGHT.controller = {
 var led_absent_state = 0;
 var led_working_state = 0;
 var led_inMind_state = 0;
+var led_working_state = 0;
 
 var user_state = "";
-
-var time = Date.now || function() {
-    return +new Date;
-};
 
 var iv = setInterval(function() {
     // led 상태 동기화
     led_absent_state = led_absent.readSync();
     led_working_state = led_working.readSync();
     led_inMind_state = led_inMind.readSync();
+    led_metting_state = led_meeting.readSync();
 
     var userInfo = INSIGHT.controller.getUserInfo(1); // 김필영
 
@@ -60,26 +60,24 @@ var iv = setInterval(function() {
             console.log(user_state);
             console.log(snapshot.val().team);
             console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            led_absent.writeSync(0);
+            led_working.writeSync(0);
+            led_inMind.writeSync(0);
+            led_meeting.writeSync(0);
             switch (user_state) {
                 case "absence":
                     led_absent.writeSync(1);
-                    led_working.writeSync(0);
-                    led_inMind.writeSync(0);
                     break;
                 case "normal":
-                    led_absent.writeSync(0);
                     led_working.writeSync(1);
-                    led_inMind.writeSync(0);
                     break;
                 case "focus":
-                    led_absent.writeSync(0);
-                    led_working.writeSync(0);
                     led_inMind.writeSync(1);
                     break;
+                case "meeting":
+                    led_meeting.writeSync(1);
+                    break;
                 default:
-                    led_absent.writeSync(0);
-                    led_working.writeSync(0);
-                    led_inMind.writeSync(0);
             }
         });
 }, 1000);
@@ -92,4 +90,6 @@ setTimeout(function() {
     led_working.unexport();
     led_inMind.writeSync(0);
     led_inMind.unexport();
+    led_meeting.writeSync(0);
+    led_metting.unexport();
 }, 20000);
